@@ -2,7 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ضبط العرض على الجوال -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>هدية عيد ميلاد 💕</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -10,12 +11,13 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent; /* إزالة الظل عند النقر */
     }
 
     body {
       background: linear-gradient(135deg, #ffd1dc, #f8a5c2, #ff7979);
       background-size: 400% 400%;
-      animation: gradientBG 18s ease infinite;
+      animation: gradientBG 20s ease infinite;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -24,7 +26,9 @@
       font-family: 'Cairo', sans-serif;
       overflow: hidden;
       position: relative;
-      padding: 20px 10px 40px;
+      padding: 15px 10px 30px;
+      /* منع التمرير الزائد */
+      overscroll-behavior: contain;
     }
 
     @keyframes gradientBG {
@@ -34,60 +38,70 @@
     }
 
     .happy-text {
-      font-size: 2.9rem;
+      font-size: clamp(2rem, 6vw, 2.9rem);
       font-weight: 800;
       color: white;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
       cursor: pointer;
-      padding: 18px 35px;
+      padding: 16px 30px;
       background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      border-radius: 25px;
+      backdrop-filter: blur(8px);
+      border-radius: 22px;
       border: 2px solid rgba(255, 255, 255, 0.4);
-      transition: all 0.4s ease;
+      transition: transform 0.3s ease;
       z-index: 10;
       font-family: 'Dancing Script', cursive;
-      margin-top: 30px;
+      margin-top: 20px;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .happy-text:active {
+      transform: scale(0.98);
     }
 
     #birthdayImage {
-      max-width: 90%;
-      max-height: 60vh;
-      border-radius: 20px;
-      margin-top: 25px;
+      max-width: 92%;
+      max-height: 55vh;
+      border-radius: 18px;
+      margin-top: 20px;
       display: none;
-      border: 4px solid white;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 3px solid white;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       z-index: 10;
+      will-change: transform, opacity;
     }
 
     #wishMessage {
-      font-size: 1.8rem;
+      font-size: clamp(1.3rem, 4.5vw, 1.8rem);
       color: white;
-      text-shadow: 0 0 12px rgba(255, 105, 180, 0.9);
-      margin-top: 20px;
+      text-shadow: 0 0 10px rgba(255, 105, 180, 0.9);
+      margin-top: 18px;
       font-family: 'Dancing Script', cursive;
       text-align: center;
       display: none;
       z-index: 10;
-      line-height: 1.5;
+      line-height: 1.4;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     #passwordInput {
       display: none;
-      margin-top: 20px;
-      padding: 10px 15px;
-      font-size: 1.2rem;
+      margin-top: 18px;
+      padding: 9px 14px;
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
       text-align: center;
       border: 2px solid #ff9ff3;
-      border-radius: 15px;
+      border-radius: 14px;
       outline: none;
       background: rgba(255, 255, 255, 0.5);
       color: #e84393;
       font-weight: bold;
-      width: 65%;
+      width: 68%;
       z-index: 10;
       font-family: 'Cairo', sans-serif;
+      caret-color: transparent; /* إخفاء مؤشر الكتابة */
     }
 
     #loveMessage {
@@ -95,38 +109,38 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 5rem;
+      font-size: clamp(3.2rem, 12vw, 5rem);
       font-family: 'Dancing Script', cursive;
       color: #ff0066;
       text-shadow: 
-        0 0 20px #ff66b2,
-        0 0 40px #ff3399,
-        0 0 60px #ff0066;
+        0 0 15px #ff66b2,
+        0 0 30px #ff3399;
       font-weight: bold;
       display: none;
       z-index: 20;
-      animation: pulseGlow 1.8s infinite alternate;
       text-align: center;
-    }
-
-    @keyframes pulseGlow {
-      from { transform: translate(-50%, -50%) scale(1); }
-      to { transform: translate(-50%, -50%) scale(1.04); }
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .heart {
       position: absolute;
-      font-size: 22px;
+      font-size: clamp(16px, 4vw, 22px);
       opacity: 0;
       pointer-events: none;
       z-index: 5;
+      will-change: transform, opacity;
     }
 
-    @media (max-width: 600px) {
-      .happy-text { font-size: 2.3rem; padding: 14px 25px; }
-      #wishMessage { font-size: 1.5rem; }
-      #loveMessage { font-size: 4rem; }
-      #passwordInput { font-size: 1.1rem; width: 75%; }
+    /* تحسين الأداء على الجوال */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px 8px 20px;
+      }
+      .happy-text {
+        padding: 14px 25px;
+        border-radius: 20px;
+      }
     }
   </style>
 </head>
@@ -139,9 +153,11 @@
   <div id="wishMessage">كل سنة وانتِ طيبة<br>ينوري 💖</div>
   <input type="password" id="passwordInput" placeholder="كلمة السر..." maxlength="5">
 
-  <audio id="birthdaySong" loop></audio>
+  <audio id="birthdaySong" preload="auto"></audio>
 
   <script>
+    // تحسين تشغيل الصوت على الآيفون
+    let audioPlayed = false;
     const happyText = document.getElementById('happyText');
     const birthdayImage = document.getElementById('birthdayImage');
     const wishMessage = document.getElementById('wishMessage');
@@ -149,24 +165,45 @@
     const passwordInput = document.getElementById('passwordInput');
     const loveMessage = document.getElementById('loveMessage');
 
+    // محاولة تشغيل صوت صامت أولي (لـ iOS)
+    function initAudio() {
+      if (audioPlayed) return;
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+      oscillator.start();
+      gain.gain.setValueAtTime(0.001, context.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.00001, context.currentTime + 0.1);
+      setTimeout(() => {
+        oscillator.stop();
+        context.close();
+        audioPlayed = true;
+      }, 100);
+    }
+
     happyText.addEventListener('click', () => {
+      if (!audioPlayed) initAudio();
+
       happyText.style.display = 'none';
       
-      // تحميل الصورة من نفس المجلد
       birthdayImage.src = 'birthday.png';
       birthdayImage.style.display = 'block';
       
       wishMessage.style.display = 'block';
       
-      // تحميل الأغنية من نفس المجلد
+      // تحميل الصوت
       birthdaySong.src = 'song.mp3';
       birthdaySong.loop = true;
-      birthdaySong.load();
-      birthdaySong.play().catch(e => console.warn("الصوت يحتاج تفاعل:", e));
+      
+      // تشغيل الصوت (الآن مسموح لأن المستخدم تفاعل)
+      birthdaySong.play().catch(e => {
+        console.warn("فشل تشغيل الصوت:", e);
+      });
       
       passwordInput.style.display = 'block';
       
-      // بدء القلوب تحت الجملة
       startHeartsUnderWish();
     });
 
@@ -190,19 +227,19 @@
         
         const x = rect.left + Math.random() * rect.width;
         const y = rect.bottom + 10;
-        createHeart(x, y, '#ff6b9d', 2500);
-      }, 350);
+        createHeart(x, y, '#ff6b9d', 2200);
+      }, 400);
     }
 
     function startStormHearts() {
       setInterval(() => {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 6; i++) {
           const x = Math.random() * window.innerWidth;
-          const y = window.innerHeight + 20;
-          const color = ['#ff0066', '#ff66b2', '#ff3399'][Math.floor(Math.random() * 3)];
-          createHeart(x, y, color, 4000 + Math.random() * 2000);
+          const y = window.innerHeight + 10;
+          const color = ['#ff0066', '#ff66b2'][Math.floor(Math.random() * 2)];
+          createHeart(x, y, color, 3500 + Math.random() * 1500);
         }
-      }, 250);
+      }, 300);
     }
 
     function createHeart(x, y, color, duration) {
@@ -212,18 +249,19 @@
       heart.style.left = x + 'px';
       heart.style.top = y + 'px';
       heart.style.color = color;
-      heart.style.fontSize = (Math.random() * 20 + 18) + 'px';
+      heart.style.fontSize = (Math.random() * 16 + 16) + 'px';
       document.body.appendChild(heart);
 
-      const distance = - (80 + Math.random() * window.innerHeight * 0.7);
-      const rotate = (Math.random() > 0.5 ? '' : '-') + (180 + Math.random() * 180);
+      const distance = - (70 + Math.random() * window.innerHeight * 0.6);
+      const rotate = (Math.random() > 0.5 ? '' : '-') + (180 + Math.random() * 120);
 
+      // استخدام Web Animations API (أفضل أداء)
       heart.animate([
         { transform: 'translateY(0) scale(0.7) rotate(0deg)', opacity: 1 },
-        { transform: `translateY(${distance}px) rotate(${rotate}deg) scale(1.3)`, opacity: 0 }
+        { transform: `translateY(${distance}px) rotate(${rotate}deg) scale(1.2)`, opacity: 0 }
       ], {
         duration: duration,
-        easing: 'cubic-bezier(0.1, 0.9, 0.3, 1)'
+        easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)'
       });
 
       setTimeout(() => {
